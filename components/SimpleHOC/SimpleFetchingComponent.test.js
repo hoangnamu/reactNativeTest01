@@ -55,8 +55,10 @@ test("should call url for fetching data", () => {
   // TODO : Initialize HOC component with url
   // Wrap list into components
   // Expect getJSON func should be call with url
-
-  expect(false).toBe(true)
+  const url = 'https://api.github.com/users/gists'
+  const ListWrapFetch = withData(url)(List)
+  const wrapper = shallow(<ListWrapFetch/>)
+  expect(getJSON).toHaveBeenCalledWith(url)
 });
 
 test("should call url with specific path by props", () => {
