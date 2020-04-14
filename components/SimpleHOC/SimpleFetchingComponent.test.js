@@ -31,16 +31,22 @@ test("should pass props into component via HOC", () => {
   // Call HOC Component & Wrap it with List
   // Shallow rendering with props
   // Compare & expect props
-  const mockedUrl = jest.mock()
 
-  let withDataCompo;
-  let dataCompo;
+  // const mockedUrl = jest.mock()
+  //
+  // let withDataCompo;
+  // let dataCompo;
+  //
+  // withDataCompo = withData(mockedUrl)
+  // dataCompo = withDataCompo(List)
+  //
+  // const wrapper = shallow(<dataCompo {...{username}}/>)
+  // expect(wrapper.props().username).toBe(username)
 
-  withDataCompo = withData(mockedUrl)
-  dataCompo = withDataCompo(List)
+  const ListWrapFetch = withData()(List)
+  const wrapper = shallow(<ListWrapFetch {...{username}}/>)
 
-  const wrapper = shallow(<dataCompo {...{username}}/>)
-  expect(wrapper.props().username).toBe(username)
+  expect(wrapper.prop('username')).toBe(username)
 });
 
 test("should call url for fetching data", () => {
